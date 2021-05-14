@@ -1,6 +1,6 @@
 {
   "name": "editorjs-wquote",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "keywords": [
     "codex editor",
     "tool",
@@ -10,7 +10,7 @@
   ],
   "description": "WordQuote Tool for Editor.js",
   "license": "MIT",
-  "repository": "https://github.com/editor-js/wquote",
+  "repository": "https://github.com/liruixue/editorjs-wquote",
   "main": "./dist/bundle.js",
   "scripts": {
     "build": "webpack --mode production",

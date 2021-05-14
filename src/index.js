@@ -198,21 +198,21 @@ class WordQuote {
    * @returns {Element}
    */
   render() {
-    const container = this._make('blockwquote', [this.CSS.baseClass, this.CSS.wrapper]);
-    const wquote = this._make('div', [this.CSS.input, this.CSS.text], {
-      contentEditable: !this.readOnly,
-      innerHTML: this.data.text,
-    });
+    const container = this._make('blockwquote', [this.CSS.baseClass, this.CSS.wrapper]);    
     const caption = this._make('div', [this.CSS.input, this.CSS.caption], {
       contentEditable: !this.readOnly,
       innerHTML: this.data.caption,
+    });
+    const wquote = this._make('div', [this.CSS.input, this.CSS.text], {
+      contentEditable: !this.readOnly,
+      innerHTML: this.data.text,
     });
 
     wquote.dataset.placeholder = this.wquotePlaceholder;
     caption.dataset.placeholder = this.captionPlaceholder;
 
-    container.appendChild(wquote);
     container.appendChild(caption);
+    container.appendChild(wquote);
 
     return container;
   }
