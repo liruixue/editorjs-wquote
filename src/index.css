@@ -1,0 +1,39 @@
+.cdx-wquote-icon svg {
+  transform: rotate(180deg);
+}
+
+.cdx-wquote {
+  margin: 0;
+}
+
+.cdx-wquote__text {
+  min-height: 158px;
+  margin-bottom: 10px;
+}
+
+.cdx-wquote__caption {}
+
+.cdx-wquote [contentEditable=true][data-placeholder]::before{
+  position: absolute;
+  content: attr(data-placeholder);
+  color: #707684;
+  font-weight: normal;
+  opacity: 0;
+}
+
+.cdx-wquote [contentEditable=true][data-placeholder]:empty::before {
+  opacity: 1;
+}
+
+.cdx-wquote [contentEditable=true][data-placeholder]:empty:focus::before {
+  opacity: 0;
+}
+
+
+.cdx-wquote-settings {
+  display: flex;
+}
+
+.cdx-wquote-settings .cdx-settings-button {
+  width: 50%;
+}
