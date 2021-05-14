@@ -1,6 +1,6 @@
 {
-  "name": "@editorjs/wquote",
-  "version": "0.1",
+  "name": "editorjs-wquote",
+  "version": "0.1.0",
   "keywords": [
     "codex editor",
     "tool",
@@ -17,8 +17,8 @@
     "build:dev": "webpack --mode development --watch"
   },
   "author": {
-    "name": "CodeX",
-    "email": "team@codex.so"
+    "name": "limuqiao",
+    "email": "80373717@qq.com"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
