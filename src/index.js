@@ -139,7 +139,7 @@ class WordQuote {
       baseClass: this.api.styles.block,
       wrapper: 'cdx-wquote',
       text: 'cdx-wquote__text',
-      input: this.api.styles.input,
+      input: 'cdx-wquote-content',
       caption: 'cdx-wquote__caption',
       settingsWrapper: 'cdx-wquote-settings',
       settingsButton: this.api.styles.settingsButton,

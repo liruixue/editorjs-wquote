@@ -6,28 +6,28 @@
   margin: 0;
 }
 
+.cdx-wquote-content {
+  width: 100%;
+  padding: 10px 12px;
+}
+
 .cdx-wquote__text {
   min-height: 158px;
   margin-bottom: 10px;
+  background: #F9F9F9;
+  color: #8a8a8a;
+}
+
+.cdx-wquote__text::before {
+  content: '“' !important;
+  font-size: 4rem;
+  top: -10px;
+  left: 18px;
+  color: #D3DEEA;
+  font-family: fantasy;
 }
 
 .cdx-wquote__caption {}
-
-.cdx-wquote [contentEditable=true][data-placeholder]::before{
-  position: absolute;
-  content: attr(data-placeholder);
-  color: #707684;
-  font-weight: normal;
-  opacity: 0;
-}
-
-.cdx-wquote [contentEditable=true][data-placeholder]:empty::before {
-  opacity: 1;
-}
-
-.cdx-wquote [contentEditable=true][data-placeholder]:empty:focus::before {
-  opacity: 0;
-}
 
 
 .cdx-wquote-settings {
