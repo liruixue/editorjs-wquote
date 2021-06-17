@@ -13,12 +13,14 @@ require('./index.css').toString();
  * @description WordQuote Tool`s input and output data
  * @property {string} text - wquote`s text
  * @property {string} caption - wquote`s caption
+ * @property {string} tail - wquote`s tail
  * @property {'center'|'left'} alignment - wquote`s alignment
  *
  * @typedef {object} WordQuoteConfig
  * @description WordQuote Tool`s initial configuration
  * @property {string} wquotePlaceholder - placeholder to show in wquote`s text input
  * @property {string} captionPlaceholder - placeholder to show in wquote`s caption input
+ * @property {string} tailPlaceholder - placeholder to show in wquote`s tail input
  * @property {'center'|'left'} defaultAlignment - alignment to use as default
  */
 class WordQuote {
@@ -85,6 +87,17 @@ class WordQuote {
     return 'Enter a caption';
   }
 
+  
+  /**
+   * Default placeholder for wquote caption
+   *
+   * @public
+   * @returns {string}
+   */
+   static get DEFAULT_TAIL_PLACEHOLDER() {
+    return 'Enter a tail text';
+  }
+
   /**
    * Allowed wquote alignments
    *
@@ -141,6 +154,7 @@ class WordQuote {
       text: 'cdx-wquote__text',
       input: 'cdx-wquote-content',
       caption: 'cdx-wquote__caption',
+      tail: 'cdx-wquote__tail',
       settingsWrapper: 'cdx-wquote-settings',
       settingsButton: this.api.styles.settingsButton,
       settingsButtonActive: this.api.styles.settingsButtonActive,
@@ -182,10 +196,12 @@ class WordQuote {
 
     this.wquotePlaceholder = config.wquotePlaceholder || WordQuote.DEFAULT_QUOTE_PLACEHOLDER;
     this.captionPlaceholder = config.captionPlaceholder || WordQuote.DEFAULT_CAPTION_PLACEHOLDER;
+    this.tailPlaceholder = config.tailPlaceholder || WordQuote.DEFAULT_TAIL_PLACEHOLDER;
 
     this.data = {
       text: data.text || '',
       caption: data.caption || '',
+      tail: data.tail||'',
       alignment: Object.values(ALIGNMENTS).includes(data.alignment) && data.alignment ||
       config.defaultAlignment ||
       DEFAULT_ALIGNMENT,
@@ -207,12 +223,18 @@ class WordQuote {
       contentEditable: !this.readOnly,
       innerHTML: this.data.text,
     });
+    const tail = this._make('div', [this.CSS.input, this.CSS.tail], {
+      contentEditable: !this.readOnly,
+      innerHTML: this.data.tail,
+    });
 
     wquote.dataset.placeholder = this.wquotePlaceholder;
     caption.dataset.placeholder = this.captionPlaceholder;
+    tail.dataset.placeholder = this.tailPlaceholder;
 
     container.appendChild(caption);
     container.appendChild(wquote);
+    container.appendChild(tail);
 
     return container;
   }
@@ -226,10 +248,12 @@ class WordQuote {
   save(wquoteElement) {
     const text = wquoteElement.querySelector(`.${this.CSS.text}`);
     const caption = wquoteElement.querySelector(`.${this.CSS.caption}`);
+    const tail = wquoteElement.querySelector(`.${this.CSS.tail}`);
 
     return Object.assign(this.data, {
       text: text.innerHTML,
       caption: caption.innerHTML,
+      tail: tail.innerHTML
     });
   }
 

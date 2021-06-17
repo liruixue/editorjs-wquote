@@ -12,8 +12,7 @@
 }
 
 .cdx-wquote__text {
-  min-height: 158px;
-  margin-bottom: 10px;
+  min-height: 112px;
   background: #F9F9F9;
   color: #8a8a8a;
 }
@@ -28,6 +27,12 @@
 }
 
 .cdx-wquote__caption {}
+
+.cdx-wquote__tail {
+  text-align: right;
+  color: #8a8a8a;
+  background: #F9F9F9;
+}
 
 
 .cdx-wquote-settings {
