@@ -1,4 +1,5 @@
 .idea/
 src/
+assets/
 webpack.config.js
 yarn.lock
