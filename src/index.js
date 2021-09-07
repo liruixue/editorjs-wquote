@@ -202,6 +202,7 @@ class WordQuote {
       text: data.text || '',
       caption: data.caption || '',
       tail: data.tail||'',
+      hasCaption:data.hasCaption,
       alignment: Object.values(ALIGNMENTS).includes(data.alignment) && data.alignment ||
       config.defaultAlignment ||
       DEFAULT_ALIGNMENT,
@@ -214,11 +215,15 @@ class WordQuote {
    * @returns {Element}
    */
   render() {
-    const container = this._make('blockwquote', [this.CSS.baseClass, this.CSS.wrapper]);    
-    const caption = this._make('div', [this.CSS.input, this.CSS.caption], {
-      contentEditable: !this.readOnly,
-      innerHTML: this.data.caption,
-    });
+    const container = this._make('blockwquote', [this.CSS.baseClass, this.CSS.wrapper]);  
+    if(this.data.hasCaption){ 
+      const caption = this._make('div', [this.CSS.input, this.CSS.caption], {
+        contentEditable: !this.readOnly,
+        innerHTML: this.data.caption,
+      });
+      caption.dataset.placeholder = this.captionPlaceholder;
+      container.appendChild(caption);
+    } 
     const wquote = this._make('div', [this.CSS.input, this.CSS.text], {
       contentEditable: !this.readOnly,
       innerHTML: this.data.text,
@@ -229,10 +234,8 @@ class WordQuote {
     });
 
     wquote.dataset.placeholder = this.wquotePlaceholder;
-    caption.dataset.placeholder = this.captionPlaceholder;
     tail.dataset.placeholder = this.tailPlaceholder;
 
-    container.appendChild(caption);
     container.appendChild(wquote);
     container.appendChild(tail);
 
@@ -250,11 +253,19 @@ class WordQuote {
     const caption = wquoteElement.querySelector(`.${this.CSS.caption}`);
     const tail = wquoteElement.querySelector(`.${this.CSS.tail}`);
 
-    return Object.assign(this.data, {
-      text: text.innerHTML,
-      caption: caption.innerHTML,
-      tail: tail.innerHTML
-    });
+    if(this.data.hasCaption){
+      const caption = wquoteElement.querySelector(`.${this.CSS.caption}`);
+      return Object.assign(this.data, {
+        text: text.innerHTML,
+        caption: caption.innerHTML,
+        tail: tail.innerHTML
+      });
+    }else{
+      return Object.assign(this.data, {
+        text: text.innerHTML,
+        tail: tail.innerHTML
+      });
+    }
   }
 
   /**
